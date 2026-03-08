@@ -378,7 +378,11 @@ export default function HomePage() {
               </div>
               <div className="search-row">
                 <div className="search-input-wrap">
+                  <label htmlFor="hero-search" className="sr-only">
+                    {tab.placeholder}
+                  </label>
                   <input
+                    id="hero-search"
                     className="search-input"
                     type="text"
                     placeholder={tab.placeholder}
@@ -792,12 +796,12 @@ export default function HomePage() {
         <div className="footer-inner">
           <div className="footer-grid">
             <div className="footer-brand">
-              <Link className="nav-logo" href="/" style={{ textDecoration: "none" }}>
-                <div style={{ width: "30px", height: "30px", borderRadius: "8px", background: "rgba(245,243,238,.1)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <span style={{ fontWeight: 900, fontSize: "13px", color: "#c8410a" }}>A</span>
+              <Link className="nav-logo" href="/">
+                <div className="footer-logo-icon">
+                  <span>A</span>
                 </div>
-                <span style={{ fontWeight: 800, fontSize: "14px", color: "rgba(245,243,238,.9)" }}>
-                  AutoCore <span style={{ color: "#c8410a" }}>AI</span>
+                <span className="footer-logo-text">
+                  AutoCore <span className="footer-logo-ai">AI</span>
                 </span>
               </Link>
               <p>
