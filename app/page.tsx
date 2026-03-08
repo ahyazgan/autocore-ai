@@ -452,53 +452,72 @@ export default function HomePage() {
           <p>50+ özellik, 8 kategori — hepsi tek platformda</p>
         </div>
         <div className="cat-grid">
-          {CATEGORIES.map((c) => (
-            <button
-              key={c.title}
-              type="button"
-              className="cat-card"
-              style={{ background: c.bg, borderColor: c.border, width: "100%", cursor: "pointer" }}
-              onClick={() => setOpenCat(c.title)}
-            >
-              <span className="cat-icon">{c.icon}</span>
-              <span className="cat-title">{c.title}</span>
-              <span className="cat-tag" style={{ background: c.tagBg, color: c.tagColor }}>
-                {c.tag}
-              </span>
-            </button>
-          ))}
+          {CATEGORIES.map((c) => {
+            const isSelected = openCat === c.title;
+            return (
+              <button
+                key={c.title}
+                type="button"
+                className={`cat-card${isSelected ? " cat-card-active" : ""}`}
+                style={{
+                  background: isSelected ? c.border : c.bg,
+                  borderColor: c.border,
+                  width: "100%",
+                  cursor: "pointer",
+                  outline: isSelected ? `2px solid ${c.tagColor}` : "none",
+                  outlineOffset: 2,
+                }}
+                onClick={() => setOpenCat(isSelected ? null : c.title)}
+              >
+                <span className="cat-icon">{c.icon}</span>
+                <span className="cat-title">{c.title}</span>
+                <span className="cat-tag" style={{ background: c.tagBg, color: c.tagColor }}>
+                  {c.tag}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
-        {/* Bottom Sheet */}
-        {openCat && (() => {
-          const cat = CATEGORIES.find((c) => c.title === openCat)!;
-          return (
-            <>
+        {/* Inline araç paneli — grid'in hemen altında */}
+        <div className={`cat-expand-wrap${openCat ? " open" : ""}`}>
+          {CATEGORIES.map((c) => {
+            const isOpen = openCat === c.title;
+            return (
               <div
-                className={`cat-sheet-backdrop${closingCat ? " closing" : ""}`}
-                onClick={closeSheet}
-              />
-              <div className={`cat-sheet${closingCat ? " closing" : ""}`}>
-                <div className="cat-sheet-handle" />
-                <div className="cat-sheet-header">
-                  <div className="cat-sheet-title">
-                    <span className="cat-sheet-title-icon">{cat.icon}</span>
-                    <span className="cat-sheet-title-text">{cat.title}</span>
-                  </div>
-                  <button type="button" className="cat-sheet-close" onClick={closeSheet}>✕</button>
+                key={c.title}
+                className={`cat-expand-panel${isOpen ? " active" : ""}`}
+                aria-hidden={!isOpen}
+              >
+                <div className="cat-expand-header">
+                  <span style={{ fontSize: 20 }}>{c.icon}</span>
+                  <span className="cat-expand-title">{c.title}</span>
+                  <button
+                    type="button"
+                    className="cat-expand-close"
+                    onClick={() => setOpenCat(null)}
+                  >✕</button>
                 </div>
-                <div className="cat-sheet-tools">
-                  {cat.tools.map((t) => (
-                    <Link key={t.href + t.name} href={t.href} className="cat-sheet-tool" onClick={closeSheet}>
-                      <span className="cat-sheet-tool-name">{t.name}</span>
-                      <span className="cat-sheet-tool-desc">{t.desc}</span>
+                <div className="cat-expand-tools">
+                  {c.tools.map((t, i) => (
+                    <Link
+                      key={t.href + t.name}
+                      href={t.href}
+                      className="cat-expand-tool"
+                      style={{ animationDelay: `${i * 40}ms` }}
+                      onClick={() => setOpenCat(null)}
+                    >
+                      <span className="cat-expand-tool-name">{t.name}</span>
+                      <span className="cat-expand-tool-desc">{t.desc}</span>
+                      <span className="cat-expand-arrow">→</span>
                     </Link>
                   ))}
                 </div>
               </div>
-            </>
-          );
-        })()}
+            );
+          })}
+        </div>
+
         <div className="features-more">
           <Link href="/araclar">Tüm 50+ özelliği gör →</Link>
         </div>
