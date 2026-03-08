@@ -4,9 +4,8 @@ import Replicate from "replicate";
 const REMBG_MODEL =
   "cjwbw/rembg:fb8af171cfa1616ddcf1242c093f9c46bcada5ad4cf6f2fbe8b81b330ec5c003";
 
-// GEÇİCİ OLARAK BÖYLE YAPALIM
 const replicate = new Replicate({
-  auth: "r8_SgEraAd1BTor8HeuW3Kp8fKCz5e0AAP1Lyr57",
+  auth: process.env.REPLICATE_API_KEY,
 });
 
 export async function POST(request: NextRequest) {
