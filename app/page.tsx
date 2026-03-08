@@ -33,14 +33,86 @@ const TAB_CONFIG: Record<
 };
 
 const CATEGORIES = [
-  { href: "/yapay-zeka", bg: "#f3f0f9", border: "#e2d9f3", icon: "🤖", title: "Yapay Zeka", tagBg: "#e2d9f3", tagColor: "#6d28d9", tag: "3 araç" },
-  { href: "/studio", bg: "#fdf0f3", border: "#f8d0da", icon: "📸", title: "Görsel Stüdyo", tagBg: "#f8d0da", tagColor: "#be123c", tag: "6 araç" },
-  { href: "/yapay-zeka", bg: "#eff6ff", border: "#bfdbfe", icon: "🛡️", title: "Alıcı Araçları", tagBg: "#bfdbfe", tagColor: "#1d4ed8", tag: "7 araç" },
-  { href: "/studio", bg: "#f0fdf4", border: "#bbf7d0", icon: "💰", title: "Araç Sat", tagBg: "#bbf7d0", tagColor: "#15803d", tag: "3 araç" },
-  { href: "/data", bg: "#fff7ed", border: "#fed7aa", icon: "📊", title: "Finans & Veri", tagBg: "#fed7aa", tagColor: "#c2410c", tag: "5 araç" },
-  { href: "/garage", bg: "#f0fdf4", border: "#bbf7d0", icon: "🔧", title: "Garaj", tagBg: "#bbf7d0", tagColor: "#15803d", tag: "8 araç" },
-  { href: "/ev", bg: "#f0f9ff", border: "#bae6fd", icon: "⚡", title: "Elektrikli Araç", tagBg: "#bae6fd", tagColor: "#0369a1", tag: "5 araç" },
-  { href: "/fiyatlandirma", bg: "#fafaf9", border: "#e7e5e4", icon: "🏢", title: "Kurumsal", tagBg: "#e7e5e4", tagColor: "#44403c", tag: "4 araç" },
+  {
+    bg: "#f3f0f9", border: "#e2d9f3", icon: "🤖", title: "Yapay Zeka", tagBg: "#e2d9f3", tagColor: "#6d28d9", tag: "3 araç",
+    tools: [
+      { name: "Ekspertiz Çevirmen", href: "/yapay-zeka/ekspertiz", desc: "Raporu 8 sn'de analiz et" },
+      { name: "Tramer SMS Dedektifi", href: "/yapay-zeka/tramer-okuyucu", desc: "Hasar geçmişini öğren" },
+      { name: "İlan Dedektifi", href: "/yapay-zeka/ilan-dedektifi", desc: "Sahte ilanları tespit et" },
+    ],
+  },
+  {
+    bg: "#fdf0f3", border: "#f8d0da", icon: "📸", title: "Görsel Stüdyo", tagBg: "#f8d0da", tagColor: "#be123c", tag: "6 araç",
+    tools: [
+      { name: "Arka Plan Sil", href: "/studio/bg-remover", desc: "Profesyonel stüdyo arka planı" },
+      { name: "360° Görüntü", href: "/studio/360-spin", desc: "İnteraktif araç turu" },
+      { name: "Hasar Tespiti", href: "/studio/damage-detect", desc: "Fotoğraftan hasar bul" },
+      { name: "Sanal Tuner", href: "/studio/virtual-tuner", desc: "Renk ve jant dene" },
+      { name: "İlan Oluşturucu", href: "/studio/listing-gen", desc: "AI ile ilan yaz" },
+      { name: "Reels Yapıcı", href: "/studio/reels-maker", desc: "Sosyal medya videosu" },
+    ],
+  },
+  {
+    bg: "#eff6ff", border: "#bfdbfe", icon: "🛡️", title: "Alıcı Araçları", tagBg: "#bfdbfe", tagColor: "#1d4ed8", tag: "7 araç",
+    tools: [
+      { name: "Ekspertiz Analizi", href: "/yapay-zeka/ekspertiz", desc: "AI rapor okuma" },
+      { name: "Tramer Sorgulama", href: "/yapay-zeka/tramer-okuyucu", desc: "Hasar geçmişi" },
+      { name: "İlan Kontrolü", href: "/yapay-zeka/ilan-dedektifi", desc: "Dolandırıcılık tespiti" },
+      { name: "Şase No Çözücü", href: "/data/vin-decoder", desc: "VIN sorgulama" },
+      { name: "Fiyat Kontrol", href: "/data/price-check", desc: "Piyasa karşılaştırma" },
+      { name: "Limon Kontrol", href: "/data/lemon-check", desc: "Risk değerlendirmesi" },
+      { name: "Dolandırıcılık Tespit", href: "/data/scam-detect", desc: "Sahte ilan analizi" },
+    ],
+  },
+  {
+    bg: "#f0fdf4", border: "#bbf7d0", icon: "💰", title: "Araç Sat", tagBg: "#bbf7d0", tagColor: "#15803d", tag: "3 araç",
+    tools: [
+      { name: "İlan Oluşturucu", href: "/studio/listing-gen", desc: "AI ile profesyonel ilan" },
+      { name: "Arka Plan Sil", href: "/studio/bg-remover", desc: "Çekici fotoğraf" },
+      { name: "Fiyat Kontrol", href: "/data/price-check", desc: "Doğru fiyat belirle" },
+    ],
+  },
+  {
+    bg: "#fff7ed", border: "#fed7aa", icon: "📊", title: "Finans & Veri", tagBg: "#fed7aa", tagColor: "#c2410c", tag: "5 araç",
+    tools: [
+      { name: "Toplam Sahip Olma Maliyeti", href: "/data/tco-calculator", desc: "5 yıllık maliyet" },
+      { name: "Gelecek Değer", href: "/data/future-value", desc: "Değer kaybı tahmini" },
+      { name: "İthalat Hesaplama", href: "/data/import-calc", desc: "Gümrük ve ÖTV" },
+      { name: "Kredi Hesaplama", href: "/araclar/kredi-hesaplama", desc: "Aylık taksit" },
+      { name: "ÖTV Hesaplama", href: "/araclar/otv-hesaplama", desc: "Vergi hesabı" },
+    ],
+  },
+  {
+    bg: "#f0fdf4", border: "#bbf7d0", icon: "🔧", title: "Garaj", tagBg: "#bbf7d0", tagColor: "#15803d", tag: "8 araç",
+    tools: [
+      { name: "Mekanik Asistan", href: "/garage/mechanic-ai", desc: "AI ile arıza tespiti" },
+      { name: "OBD Kodları", href: "/garage/obd-codes", desc: "Arıza kodu sorgula" },
+      { name: "Gösterge Işıkları", href: "/garage/dashboard-lights", desc: "Uyarı ışığı rehberi" },
+      { name: "Yağ Bulucu", href: "/garage/oil-finder", desc: "Doğru motor yağı" },
+      { name: "Lastik Hesaplama", href: "/garage/tire-calc", desc: "Boyut uyumluluk" },
+      { name: "Radyo Kodu", href: "/garage/radio-code", desc: "Radyo kilidini aç" },
+      { name: "Parça Çapraz Ref.", href: "/garage/part-cross-ref", desc: "Uyumlu parça bul" },
+      { name: "Muayene Takvimi", href: "/garaj/muayene-takvimi", desc: "Muayene hatırlatıcı" },
+    ],
+  },
+  {
+    bg: "#f0f9ff", border: "#bae6fd", icon: "⚡", title: "Elektrikli Araç", tagBg: "#bae6fd", tagColor: "#0369a1", tag: "5 araç",
+    tools: [
+      { name: "Menzil Tahmini", href: "/ev/range-estimator", desc: "Gerçekçi menzil hesabı" },
+      { name: "Şarj Maliyeti", href: "/ev/charging-cost", desc: "Ev vs halka açık" },
+      { name: "Batarya Sağlığı", href: "/ev/battery-health", desc: "Batarya durumu analizi" },
+      { name: "Tasarruf Hesaplama", href: "/ev/savings-calc", desc: "EV vs benzinli" },
+    ],
+  },
+  {
+    bg: "#fafaf9", border: "#e7e5e4", icon: "🏢", title: "Kurumsal", tagBg: "#e7e5e4", tagColor: "#44403c", tag: "4 araç",
+    tools: [
+      { name: "Fiyatlandırma", href: "/fiyatlandirma", desc: "Plan ve paketler" },
+      { name: "Galeri Pro", href: "/fiyatlandirma", desc: "Sınırsız analiz" },
+      { name: "API Erişimi", href: "/fiyatlandirma", desc: "Kendi sisteminize entegre" },
+      { name: "Toplu Analiz", href: "/fiyatlandirma", desc: "Filo yönetimi" },
+    ],
+  },
 ];
 
 const TRUST_ITEMS = [
@@ -83,6 +155,7 @@ export default function HomePage() {
   const [activeTab, setActiveTab] = useState<TabId>("ekspertiz");
   const [menuOpen, setMenuOpen] = useState(false);
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
+  const [openCat, setOpenCat] = useState<string | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -373,26 +446,61 @@ export default function HomePage() {
           <p>50+ özellik, 8 kategori — hepsi tek platformda</p>
         </div>
         <div className="cat-grid">
-          {CATEGORIES.map((c) => (
-            <Link
-              key={c.title}
-              href={c.href}
-              className="cat-card"
-              style={{
-                background: c.bg,
-                borderColor: c.border,
-              }}
-            >
-              <span className="cat-icon">{c.icon}</span>
-              <span className="cat-title">{c.title}</span>
-              <span
-                className="cat-tag"
-                style={{ background: c.tagBg, color: c.tagColor }}
-              >
-                {c.tag}
-              </span>
-            </Link>
-          ))}
+          {CATEGORIES.map((c) => {
+            const isOpen = openCat === c.title;
+            return (
+              <div key={c.title} style={{ gridColumn: isOpen ? "1 / -1" : undefined }}>
+                <button
+                  type="button"
+                  className="cat-card"
+                  style={{ background: c.bg, borderColor: c.border, width: "100%", cursor: "pointer", textAlign: "left" }}
+                  onClick={() => setOpenCat(isOpen ? null : c.title)}
+                >
+                  <span className="cat-icon">{c.icon}</span>
+                  <span className="cat-title">{c.title}</span>
+                  <span className="cat-tag" style={{ background: c.tagBg, color: c.tagColor }}>
+                    {c.tag}
+                  </span>
+                  <span style={{ marginLeft: "auto", fontSize: 12, color: c.tagColor }}>
+                    {isOpen ? "▲" : "▼"}
+                  </span>
+                </button>
+                {isOpen && (
+                  <div style={{
+                    background: c.bg,
+                    border: `1px solid ${c.border}`,
+                    borderTop: "none",
+                    borderRadius: "0 0 16px 16px",
+                    padding: "12px 16px 16px",
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
+                    gap: 10,
+                  }}>
+                    {c.tools.map((t) => (
+                      <Link
+                        key={t.href + t.name}
+                        href={t.href}
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: 2,
+                          padding: "10px 14px",
+                          borderRadius: 12,
+                          background: "rgba(255,255,255,0.7)",
+                          border: `1px solid ${c.border}`,
+                          textDecoration: "none",
+                          transition: "background 0.15s",
+                        }}
+                      >
+                        <span style={{ fontWeight: 600, fontSize: 13, color: "#0a0a0f" }}>{t.name}</span>
+                        <span style={{ fontSize: 11, color: "#6b7280" }}>{t.desc}</span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
         <div className="features-more">
           <Link href="/araclar">Tüm 50+ özelliği gör →</Link>
