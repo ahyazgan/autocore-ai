@@ -156,6 +156,12 @@ export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
   const [openCat, setOpenCat] = useState<string | null>(null);
+  const [closingCat, setClosingCat] = useState(false);
+
+  const closeSheet = () => {
+    setClosingCat(true);
+    setTimeout(() => { setOpenCat(null); setClosingCat(false); }, 220);
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -446,62 +452,53 @@ export default function HomePage() {
           <p>50+ özellik, 8 kategori — hepsi tek platformda</p>
         </div>
         <div className="cat-grid">
-          {CATEGORIES.map((c) => {
-            const isOpen = openCat === c.title;
-            return (
-              <div key={c.title} style={{ gridColumn: isOpen ? "1 / -1" : undefined }}>
-                <button
-                  type="button"
-                  className="cat-card"
-                  style={{ background: c.bg, borderColor: c.border, width: "100%", cursor: "pointer", textAlign: "left" }}
-                  onClick={() => setOpenCat(isOpen ? null : c.title)}
-                >
-                  <span className="cat-icon">{c.icon}</span>
-                  <span className="cat-title">{c.title}</span>
-                  <span className="cat-tag" style={{ background: c.tagBg, color: c.tagColor }}>
-                    {c.tag}
-                  </span>
-                  <span style={{ marginLeft: "auto", fontSize: 12, color: c.tagColor }}>
-                    {isOpen ? "▲" : "▼"}
-                  </span>
-                </button>
-                {isOpen && (
-                  <div style={{
-                    background: c.bg,
-                    border: `1px solid ${c.border}`,
-                    borderTop: "none",
-                    borderRadius: "0 0 16px 16px",
-                    padding: "12px 16px 16px",
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))",
-                    gap: 10,
-                  }}>
-                    {c.tools.map((t) => (
-                      <Link
-                        key={t.href + t.name}
-                        href={t.href}
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          gap: 2,
-                          padding: "10px 14px",
-                          borderRadius: 12,
-                          background: "rgba(255,255,255,0.7)",
-                          border: `1px solid ${c.border}`,
-                          textDecoration: "none",
-                          transition: "background 0.15s",
-                        }}
-                      >
-                        <span style={{ fontWeight: 600, fontSize: 13, color: "#0a0a0f" }}>{t.name}</span>
-                        <span style={{ fontSize: 11, color: "#6b7280" }}>{t.desc}</span>
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            );
-          })}
+          {CATEGORIES.map((c) => (
+            <button
+              key={c.title}
+              type="button"
+              className="cat-card"
+              style={{ background: c.bg, borderColor: c.border, width: "100%", cursor: "pointer" }}
+              onClick={() => setOpenCat(c.title)}
+            >
+              <span className="cat-icon">{c.icon}</span>
+              <span className="cat-title">{c.title}</span>
+              <span className="cat-tag" style={{ background: c.tagBg, color: c.tagColor }}>
+                {c.tag}
+              </span>
+            </button>
+          ))}
         </div>
+
+        {/* Bottom Sheet */}
+        {openCat && (() => {
+          const cat = CATEGORIES.find((c) => c.title === openCat)!;
+          return (
+            <>
+              <div
+                className={`cat-sheet-backdrop${closingCat ? " closing" : ""}`}
+                onClick={closeSheet}
+              />
+              <div className={`cat-sheet${closingCat ? " closing" : ""}`}>
+                <div className="cat-sheet-handle" />
+                <div className="cat-sheet-header">
+                  <div className="cat-sheet-title">
+                    <span className="cat-sheet-title-icon">{cat.icon}</span>
+                    <span className="cat-sheet-title-text">{cat.title}</span>
+                  </div>
+                  <button type="button" className="cat-sheet-close" onClick={closeSheet}>✕</button>
+                </div>
+                <div className="cat-sheet-tools">
+                  {cat.tools.map((t) => (
+                    <Link key={t.href + t.name} href={t.href} className="cat-sheet-tool" onClick={closeSheet}>
+                      <span className="cat-sheet-tool-name">{t.name}</span>
+                      <span className="cat-sheet-tool-desc">{t.desc}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </>
+          );
+        })()}
         <div className="features-more">
           <Link href="/araclar">Tüm 50+ özelliği gör →</Link>
         </div>
