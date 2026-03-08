@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Poppins } from "next/font/google";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { Geist, Geist_Mono, Inter, Poppins } from "next/font/google";
+import { LayoutWrapper } from "@/components/LayoutWrapper";
 import { CommandPalette } from "@/components/CommandPalette";
 import { BackToTop } from "@/components/BackToTop";
 import "./globals.css";
@@ -20,6 +19,12 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-poppins",
+});
+
+const inter = Inter({
+  weight: ["400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://otozeka.com";
@@ -61,11 +66,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr" className="dark">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} min-h-screen bg-zinc-950 text-zinc-50 antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${inter.variable} min-h-screen bg-zinc-950 text-zinc-50 antialiased`}>
         <CommandPalette />
-        <Navbar />
-        <main className="min-h-[calc(100vh-8rem)] px-4 sm:px-6">{children}</main>
-        <Footer />
+        <LayoutWrapper>{children}</LayoutWrapper>
         <BackToTop />
       </body>
     </html>
