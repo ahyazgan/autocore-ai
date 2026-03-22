@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter, Poppins } from "next/font/google";
 import { LayoutWrapper } from "@/components/LayoutWrapper";
 import { CommandPalette } from "@/components/CommandPalette";
 import { BackToTop } from "@/components/BackToTop";
+import { FloatingAIAssistant } from "@/components/FloatingAIAssistant";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -70,6 +71,7 @@ export default function RootLayout({
         <CommandPalette />
         <LayoutWrapper>{children}</LayoutWrapper>
         <BackToTop />
+        <FloatingAIAssistant />
       </body>
     </html>
   );
