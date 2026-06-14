@@ -20,10 +20,10 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2">
             <Link href="/" className="inline-flex items-center gap-2 font-semibold text-slate-800 hover:opacity-90">
-              <span className="text-blue-600">OtoZeka</span>
+              <span className="text-blue-600">AutoCore AI</span>
             </Link>
             <p className="mt-3 max-w-xs text-sm text-slate-600">
-              Türkiye&apos;nin ücretsiz araç hesaplama ve araç araçları platformu. ÖTV, kredi, lastik uyumu ve daha fazlası.
+              Türkiye&apos;nin yapay zeka destekli oto ekspertiz ve araç analiz platformu.
             </p>
           </div>
           <div>
@@ -59,7 +59,7 @@ export function Footer() {
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-700" aria-label="LinkedIn">
                 <Linkedin className="size-5" />
               </a>
-              <a href="mailto:destek@otozeka.com" className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-700" aria-label="E-posta">
+              <a href="mailto:destek@autocoreai.com" className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-700" aria-label="E-posta">
                 <Mail className="size-5" />
               </a>
             </div>
@@ -67,7 +67,7 @@ export function Footer() {
         </div>
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-slate-200 pt-8 sm:flex-row">
           <p className="text-xs text-slate-500">
-            Tüm hakları saklıdır © 2026 OtoZeka
+            Tüm hakları saklıdır © 2026 AutoCore AI
           </p>
           <div className="flex gap-6">
             <Link href="/privacy" className="text-xs text-slate-500 hover:text-slate-700">
